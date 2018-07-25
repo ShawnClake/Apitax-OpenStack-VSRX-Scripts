@@ -1,0 +1,16 @@
+name 'assign_role';
+
+sig user_id, project_id, role_id;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+url endpoint('keystone@OpenstackDriver');
+
+put('/v3/projects/{project_id}/users/{user_id}/roles/{role_id}', {
+  'driver': 'OpenstackDriver',
+  'path': {
+    'project_id': params.project_id,
+    'user_id': params.user_id,
+    'role_id': params.role_id
+  },
+});
