@@ -1,7 +1,7 @@
 name 'vsrx_test';
 
-vsrxAuth = login(username='root', password='mpls123');
 driver = 'VsrxDriver';
+vsrxAuth = login(username='root', password='mpls123', driver=driver);
 
 bob = get('http://172.25.190.59:3000/rpc/get-software-information', {
   'auth': vsrxAuth,
