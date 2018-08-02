@@ -6,7 +6,6 @@ url endpoint('demo@{{driver}}');
 
 system_info = get('/rpc/get-software-information', {
   'driver': driver,
-  'strict': false,
   'header': {
     'Authorization': 'Basic cm9vdDptcGxzMTIz',
   },
