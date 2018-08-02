@@ -4,9 +4,11 @@ driver = 'VsrxDriver';
 
 url endpoint('demo@{{driver}}');
 
+payload = '<lock-configuration/><load-configuration><configuration><system><login><message>welcome to REST demo</message></login></system></configuration></load-configuration><commit/><unlock-configuration/>';
+
 system_info = post('/rpc', {
   'driver': driver,
-  'post': '<lock-configuration/><load-configuration><configuration><system><login><message>welcome to REST demo</message></login></system></configuration></load-configuration><commit/><unlock-configuration/>',
+  'post': payload,
   'header': {
     'Authorization': 'Basic cm9vdDptcGxzMTIz',
   },
