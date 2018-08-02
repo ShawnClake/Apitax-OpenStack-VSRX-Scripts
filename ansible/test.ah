@@ -1,7 +1,7 @@
 name 'ansible_test';
 
-bob = ct('ansible test me', {
-  'driver': 'Ansible',
+bob = ct('ansible test me --driver Ansible', {
+
 });
 
 log(bob);
