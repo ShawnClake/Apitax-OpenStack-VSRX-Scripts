@@ -3,9 +3,9 @@ name 'vsrx_test';
 driver = 'VsrxDriver';
 vsrxAuth = login(username='root', password='mpls123', driver=driver);
 
-//url endpoint('demo@VsrxDriver');
-
-bob = get('http://172.25.190.59:3000/rpc/get-software-information', {
+url endpoint('demo@VsrxDriver');
+//http://172.25.190.59:3000
+bob = get('/rpc/get-software-information', {
   'auth': vsrxAuth,
   'driver': driver,
   'strict': false,
