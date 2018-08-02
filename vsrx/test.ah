@@ -4,7 +4,7 @@ driver = 'VsrxDriver';
 
 url endpoint('demo@{{driver}}');
 
-payload = '<lock-configuration/><load-configuration><configuration><system><login><message>welcome to REST demo</message></login></system></configuration></load-configuration><commit/><unlock-configuration/>';
+payload = '<lock-configuration/><load-configuration><configuration><routing-instances><instance><name>ims-qa-dmz-vr</name><instance-type>virtual-router</instance-type><interface><name>sp-0/0/0.0</name></interface></instance></routing-instances></configuration></load-configuration><commit/><unlock-configuration/>';
 
 system_info = post('/rpc', {
   'driver': driver,
