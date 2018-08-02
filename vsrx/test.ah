@@ -6,7 +6,7 @@ url endpoint('demo@{{driver}}');
 
 system_info = post('/rpc', {
   'driver': driver,
-  'post': '<get-software-information/> <get-interface-information/>',
+  'post': '<lock-configuration/><load-configuration><configuration><system><login><message>welcome to REST demo</message></login></system></configuration></load-configuration><commit/><unlock-configuration/>',
   'header': {
     'Authorization': 'Basic cm9vdDptcGxzMTIz',
   },
