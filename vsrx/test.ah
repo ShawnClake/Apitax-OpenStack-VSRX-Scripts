@@ -4,7 +4,7 @@ driver = 'VsrxDriver';
 
 url endpoint('demo@{{driver}}');
 
-bob = get('/rpc/get-software-information', {
+system_info = get('/rpc/get-software-information', {
   'driver': driver,
   'strict': false,
   'header': {
