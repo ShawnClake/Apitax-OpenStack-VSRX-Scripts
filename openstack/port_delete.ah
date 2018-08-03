@@ -1,0 +1,14 @@
+name 'port_delete';
+
+sig username, password, port_id, project_id, endpoints;
+
+auth login(username=params.username, password=params.password, driver='OpenstackDriver', extra={"project_id": params.project_id});
+
+url params.endpoints.neutron;
+
+return delete("/v2.0/networks/{port_id}", {
+        'driver': 'OpenstackDriver',
+	    "path": {
+		"port_id": params.port_id,
+	    }
+}); 
