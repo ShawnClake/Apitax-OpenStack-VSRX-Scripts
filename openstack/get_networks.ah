@@ -8,11 +8,11 @@ auth login(username='api_admin',password='apiadmin123',driver='OpenstackDriver')
 
 url params.endpoints.neutron;
 
-response = get('/v2.0/networks', {
+return get('/v2.0/networks', {
     'driver': 'OpenstackDriver',
     'query': {
       
     },
-  });
-
-return response.networks.1
+  }){%
+result = result.networks.1;
+%}; 
