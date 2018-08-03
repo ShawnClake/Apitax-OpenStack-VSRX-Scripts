@@ -1,6 +1,6 @@
 name 'ansible_test';
-
-bob = ct('-i /app/app/hosts /app/app/test.yml --driver Ansible', {
+// -i /app/app/hosts 
+bob = ct('/app/app/test.yml --driver Ansible', {
 
 });
 
