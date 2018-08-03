@@ -13,6 +13,6 @@ return get('/v2.0/networks', {
     'query': {
       
     },
-  }){%
+}){%
 result = result.networks.1;
 %}; 
