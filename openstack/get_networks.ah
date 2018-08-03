@@ -1,14 +1,20 @@
 name 'get_networks';
 
+import json
+
 sig endpoints;
 
 auth login(username='api_admin',password='apiadmin123',driver='OpenstackDriver');
 
 url params.endpoints.neutron;
 
-return get('/v2.0/networks', {
+response = get('/v2.0/networks', {
     'driver': 'OpenstackDriver',
     'query': {
       
     },
   });
+
+resp_dict = json.loads(resppnse)
+
+return resp_dict['networks']['1']
