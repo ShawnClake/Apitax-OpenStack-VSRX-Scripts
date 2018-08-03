@@ -1,0 +1,14 @@
+name 'get_vnf';
+
+sig vnf_id, project_id, endpoints;
+
+auth login(username='api_admin',password='apiadmin123',driver='OpenstackDriver');
+
+url endpoint('keystone@OpenstackDriver');
+
+return get('/v1.0/vnfs/{vnf_id}/resources', {
+    'driver': 'OpenstackDriver',
+    'path': {
+      'vnf_id': params.vnf_id,
+    },
+}); 
