@@ -14,5 +14,5 @@ return get('/v2.0/networks', {
       
     },
 }){%
-result = result.networks.1;
+  result = result.networks.0;
 %}; 
