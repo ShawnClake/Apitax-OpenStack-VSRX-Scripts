@@ -12,5 +12,6 @@ return get('/v2.0/networks', {
       
     },
 }){%
-  result = result.networks.0;
+  if result.networks.0.tenant_id == "5182dbe9720c43ac850af96302c5f758":
+     result = result.networks.0;
 %}; 
