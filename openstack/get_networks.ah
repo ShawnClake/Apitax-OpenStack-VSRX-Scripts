@@ -15,6 +15,6 @@ response = get('/v2.0/networks', {
     },
   });
 
-resp_dict = json.loads(resppnse)
+resp_dict = json.loads(response)
 
 return resp_dict['networks']['1']
