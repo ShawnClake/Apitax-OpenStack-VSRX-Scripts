@@ -1,7 +1,5 @@
 name 'get_networks';
 
-import json
-
 sig endpoints;
 
 auth login(username='api_admin',password='apiadmin123',driver='OpenstackDriver');
