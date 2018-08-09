@@ -1,0 +1,15 @@
+name 'create_networks_for_vsrx';
+
+sig username, password, project_id, vlans='[3127]', cidrs='["216.197.242.0/29"]', port_ips='["216.197.242.4"]', physnet='datacentre';
+
+vlans = list(params.vlans);
+
+cidrs = list(params.cidrs);
+
+ports_ips = list(params.port_ips);
+
+log(vlans);
+
+log(cidrs);
+
+log(port_ips);
