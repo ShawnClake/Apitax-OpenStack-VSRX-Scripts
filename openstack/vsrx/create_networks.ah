@@ -39,4 +39,4 @@ for i in #vlans
 
 
 
-// sig username, password, project_id, net_name, vlan, cidr, port_ip, physnet='datacentre';
+//  username, password, project_id, net_name, vlan, cidr, port_ip, physnet='datacentre';
