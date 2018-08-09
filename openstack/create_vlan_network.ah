@@ -2,6 +2,12 @@ name 'create_vlan';
 
 sig username, password, project_id, net_name, vlan, cidr, port_ip, physnet='datacentre';
 
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+endpoints = {};
+endpoints.neutron = endpoint('neutron@OpenstackDriver');
+endpoints.nova = endpoint('nova@OpenstackDriver');
+
 network = script('openstack/network_create.ah', 
   username=params.username, 
   password=params.password, 
