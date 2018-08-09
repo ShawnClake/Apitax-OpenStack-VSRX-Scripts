@@ -8,13 +8,13 @@ port_ips='216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4',
 */  
 
 //vlans = list(params.vlans);
-vlans = list('3127,3115,3132,3116,3108');
+vlans = list('415,419,3127,3115,3132,3116,3108');
 
 //cidrs = list(params.cidrs);
-cidrs = list('216.197.242.0/29,172.21.85.128/28,172.21.83.16/28,172.21.85.160/28,172.21.83.0/29');
+cidrs = list('12.12.12.0/29,13.13.13.0/29,216.197.242.0/29,172.21.85.128/28,172.21.83.16/28,172.21.85.160/28,172.21.83.0/29');
 
 //port_ips = list(params.port_ips);
-port_ips = list('216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4');
+port_ips = list('12.12.12.4,13.13.13.4,216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4');
 
 /*if((#vlans != #cidrs) or (#vlans != #port_ips))
 {
@@ -23,10 +23,7 @@ port_ips = list('216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.8
 
 for i in #vlans 
 {
-  log(vlans.{{i}});
-  log(cidrs.{{i}});
-  log(port_ips.{{i}});
-  /*script('openstack/create_vlan_network.ah',  
+  script('openstack/create_vlan_network.ah',  
     username=params.username, 
     password=params.password, 
     project_id=params.project_id, 
@@ -34,7 +31,7 @@ for i in #vlans
     vlan=vlans.{{i}},
     cidr=cidrs.{{i}},
     port_ip=port_ips.{{i}},
-  );*/
+  );
 }
 
 
