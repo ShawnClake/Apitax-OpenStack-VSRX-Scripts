@@ -1,6 +1,6 @@
 name 'port_create';
 
-sig username, password, port_name, port_ip=false, subnet_id=false, network_id, project_id, mac_address=false, endpoints;
+sig username, password, port_name, port_ip=false, subnet_id=false, network_id, project_id, mac_address=false, endpoints, port_security=true, security_groups=false;
 
 auth login(username=params.username, password=params.password, driver='OpenstackDriver', extra={"project_id": params.project_id});
 
@@ -11,6 +11,7 @@ postData = {
         "name": params.port_name,
         "network_id": params.network_id,
         "fixed_ips": [],
+	"port_security_enabled": params.port_security,
     }
 };
 
@@ -19,10 +20,16 @@ if(params.mac_address)
     
 if(params.subnet_id)
 {
-	ipData = {"subnet_id": params.subnet_id};
+    ipData = {"subnet_id": params.subnet_id};
     if(params.port_ip)
     	ipData.ip_address = params.port_ip;
-	postData.port.fixed_ips[] = ipData;
+    postData.port.fixed_ips[] = ipData;
+}
+
+if(params.security_groups) {
+    postData.port.security_groups = params.security_groups;
+} else {
+    postData.port.security_groups = [];
 }
 
 return post("/v2.0/ports", {
