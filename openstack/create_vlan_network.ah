@@ -1,0 +1,41 @@
+name 'create_vlan';
+
+sig username, password, project_id, net_name, vlan, cidr, port_ip, physnet='datacentre';
+
+network = script('openstack/network_create.ah', 
+  username=params.username, 
+  password=params.password, 
+  net_name=params.net_name, 
+  vlan=params.vlan, 
+  physnet=params.physnet, 
+  project_id=params.project_id, 
+  endpoints=endpoints
+);
+
+subnet = script('openstack/subnet_create.ah', 
+  username=params.username, 
+  password=params.password, 
+  sub_name=params.net_name+"_subnet", 
+  network_id=network, 
+  cidr=params.cidr, 
+  project_id=params.project_id, 
+  endpoints=endpoints, 
+  enable_dhcp=false, 
+  gateway_ip="null"
+);
+
+port = script('openstack/port_create.ah', 
+  username=params.username, 
+  password=params.password, 
+  port_name=params.net_name+"_port", 
+  port_ip=params.port_ip, 
+  port_security=false, 
+  subnet_id=subnet, 
+  network_id=network, 
+  project_id=params.project_id, 
+  endpoints=endpoints
+);
+
+return {'network': network, 'subnet': subnet, 'port': port};
+
+
