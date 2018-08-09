@@ -1,11 +1,11 @@
 name 'create_networks_for_vsrx';
 
-sig username, password, project_id, physnet='datacentre';
-
-//  vlans='3127,3115,3132,3116,3108', 
-//  cidrs='216.197.242.0/29,172.21.85.128/28,172.21.83.16/28,172.21.85.160/28,172.21.83.0/29', 
-//  port_ips='216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4', 
-
+sig username, password, project_id, net_name, physnet='datacentre';
+/*
+  vlans='3127,3115,3132,3116,3108', 
+  cidrs='216.197.242.0/29,172.21.85.128/28,172.21.83.16/28,172.21.85.160/28,172.21.83.0/29', 
+  port_ips='216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4', 
+*/
 //vlans = list(params.vlans);
 vlans = list('3127,3115,3132,3116,3108');
 
@@ -22,5 +22,21 @@ port_ips = list('216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.8
 
 for i in #vlans 
 {
-log(i);
+  log(vlans.{{i}});
+  log(cidrs.{{i}});
+  log(port_ips.{{i}});
+  /*script('openstack/create_vlan_network.ah',  
+    username=params.username, 
+    password=params.password, 
+    project_id=params.project_id, 
+    net_name=params.net_name+str(vlans.{{i}}),
+    vlan=vlans.{{i}},
+    cidr=cidrs.{{i}},
+    port_ip=port_ips.{{i}},
+  );*/
 }
+
+
+
+
+// sig username, password, project_id, net_name, vlan, cidr, port_ip, physnet='datacentre';
