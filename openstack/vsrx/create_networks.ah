@@ -1,7 +1,7 @@
 name 'create_networks_for_vsrx';
 
 sig username, password, project_id, 
-  vlans='[3127,3115,3132,3116,3108]', 
+  vlans='["3127","3115","3132","3116","3108"]', 
   physnet='datacentre';
 
 vlans = list(params.vlans);
