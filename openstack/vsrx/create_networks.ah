@@ -18,10 +18,10 @@ cidrs = list('216.197.242.0/29,172.21.85.128/28,172.21.83.16/28,172.21.85.160/28
 //port_ips = list(params.port_ips);
 port_ips = list('216.197.242.4,172.21.82.129,172.21.83.17,172.21.85.161,172.21.83.4');
 
-log(vlans);
+if(#vlans != #cidrs || #vlans != #port_ips)
+  error("Must be the same amount of vlans, cidrs, and port ips");
 
-log(cidrs);
-
-log(port_ips);
-
-log(str(#vlans) + str(#cidrs) + str(#port_ips));
+for i in #vlans 
+{
+log(i);
+}
