@@ -21,7 +21,20 @@ port_ips = list('12.13.12.4,13.14.13.4,216.198.242.4,172.22.82.129,172.22.83.17,
   error("Must be the same amount of vlans, cidrs, and port ips");
 }*/
 
-i=0
+/*i=0
+  script('openstack/create_vlan_network.ah',  
+    username=params.username, 
+    password=params.password, 
+    project_id=params.project_id, 
+    net_name=params.net_name+str(vlans.{{i}}),
+    vlan=vlans.{{i}},
+    cidr=cidrs.{{i}},
+    port_ip=port_ips.{{i}}
+  );*/
+
+
+for i in #vlans 
+{
   script('openstack/create_vlan_network.ah',  
     username=params.username, 
     password=params.password, 
@@ -31,20 +44,7 @@ i=0
     cidr=cidrs.{{i}},
     port_ip=port_ips.{{i}}
   );
-
-
-/*for i in #vlans 
-{
-  script('openstack/create_vlan_network.ah',  
-    username=params.username, 
-    password=params.password, 
-    project_id=params.project_id, 
-    net_name=params.net_name+str(vlans.{{i}}),
-    vlan=vlans.{{i}},
-    cidr=cidrs.{{i}},
-    port_ip=port_ips.{{i}},
-  );
-}*/
+}
 
 
 
