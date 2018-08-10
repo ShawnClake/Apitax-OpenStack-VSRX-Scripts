@@ -32,10 +32,11 @@ port_ips = list('12.13.12.4,13.14.13.4,216.198.242.4,172.22.85.129,172.22.83.17,
     port_ip=port_ips.{{i}}
   );*/
 
+result = {};
 
 for i in #vlans 
 {
-  script('openstack/create_vlan_network.ah',  
+result.{{i} = script('openstack/create_vlan_network.ah',  
     username=params.username, 
     password=params.password, 
     project_id=params.project_id, 
@@ -45,6 +46,8 @@ for i in #vlans
     port_ip=port_ips.{{i}}
   );
 }
+
+return result;
 
 
 
