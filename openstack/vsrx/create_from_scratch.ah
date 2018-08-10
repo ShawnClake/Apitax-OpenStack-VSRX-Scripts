@@ -11,10 +11,10 @@ url endpoint('nova@OpenstackDriver');
   password=params.password,
   project_id=params.project_id,
   net_name=params.deploy_name+"_networks"
-);*/
+);
 
 log(networks);
-
+*/
 networkData = [];
 
 networkData[] = {'port': '2936ccfa-9cf8-4645-8f43-2ed14c731a6d', "tag":"nic0"};
