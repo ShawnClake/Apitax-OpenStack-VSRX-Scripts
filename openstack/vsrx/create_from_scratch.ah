@@ -48,7 +48,8 @@ server = post('/servers', {
 });
 
 // Configure the instance
-script('vsrx/test.ah');
+// We cant do this here because it takes time to launch!!!!
+//script('vsrx/test.ah');
 
 return server;
 
