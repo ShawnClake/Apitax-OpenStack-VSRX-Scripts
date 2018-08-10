@@ -35,7 +35,7 @@ server = post('/servers', {
   "post": {
     "server": {
       "name": params.deploy_name,
-      "flavorRef": "20a0d47b-4cd1-4850-9ba1-0606f26397f1",
+      "flavorRef": "4d893e08-057f-4989-8dbd-a7d7bb7066fd",
       "imageRef": "2ef2de18-74f7-4a7d-a14b-ac99c5368bfe",
       "networks": networkData,
       "security_groups": [
