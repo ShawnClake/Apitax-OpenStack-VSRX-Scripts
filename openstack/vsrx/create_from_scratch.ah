@@ -17,7 +17,7 @@ log(networks);
 */
 networkData = [];
 
-networkData[] = {'port': '2936ccfa-9cf8-4645-8f43-2ed14c731a6d', "tag":"nic0"};
+networkData[] = {'port': '2936ccfa-9cf8-4645-8f43-2ed14c731a6d'};
 
 /*for i in #networks
 {
