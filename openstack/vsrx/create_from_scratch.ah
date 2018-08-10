@@ -2,7 +2,7 @@ name 'create_from_scratch';
 
 sig username, password, project_id, deploy_name;
 
-auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver', extra={"project_id": params.project_id});
 
 url endpoint('nova@OpenstackDriver');
 
@@ -25,6 +25,7 @@ for i in #networks
 log(networkData);
 
 server = post('/servers', {
+  "driver": "OpenstackDriver",
   "post": {
     "server": {
       "name": params.deploy_name,
