@@ -1,6 +1,6 @@
 name 'create_from_scratch';
 
-sig username, password, project_id, deploy_name;
+sig username, password, deploy_name, project_id='5182dbe9720c43ac850af96302c5f758';
 
 auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver', extra={"project_id": params.project_id});
 
