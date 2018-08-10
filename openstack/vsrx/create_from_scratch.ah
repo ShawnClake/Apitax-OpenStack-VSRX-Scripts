@@ -1,0 +1,48 @@
+name 'create_from_scratch';
+
+sig username, password, project_id, deploy_name;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+url endpoint('nova@OpenstackDriver');
+
+networks = script('openstack/vsrx/create_networks.ah',
+  username=params.username,
+  password=params.password,
+  project_id=params.project_id,
+  net_name=params.deploy_name+"_networks"
+);
+
+log(networks);
+
+networkData = [];
+
+for i in #networks
+{
+  networkData[] = {"port-id": networks.{{i}}.port, "tag": "nic"+str(i)};
+}
+
+log(networkData);
+
+server = post('/servers', {
+  "post": {
+    "server": {
+      "name": params.deploy_name,
+      "flavorRef": "20a0d47b-4cd1-4850-9ba1-0606f26397f1",
+      "imageRef": "2ef2de18-74f7-4a7d-a14b-ac99c5368bfe",
+      "networks": networkData,
+      "security_groups": [
+        {
+          "name": "default"
+        }
+      ],
+    },
+  }, 
+});
+
+
+
+
+
+
+// username, password, project_id, net_name, physnet='datacentre';
