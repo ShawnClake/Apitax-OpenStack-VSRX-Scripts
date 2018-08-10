@@ -6,7 +6,7 @@ auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver
 
 url endpoint('nova@OpenstackDriver');
 
-/*networks = script('openstack/vsrx/create_networks.ah',
+networks = script('openstack/vsrx/create_networks.ah',
   username=params.username,
   password=params.password,
   project_id=params.project_id,
@@ -14,15 +14,15 @@ url endpoint('nova@OpenstackDriver');
 );
 
 log(networks);
-*/
+
 networkData = [];
 
-networkData[] = {'port': '2936ccfa-9cf8-4645-8f43-2ed14c731a6d'};
+networkData[] = {"port": "2936ccfa-9cf8-4645-8f43-2ed14c731a6d"};
 
-/*for i in #networks
+for i in #networks
 {
-  networkData[] = {"port-id": networks.{{i}}.port, "tag": "nic"+str(i)};
-}*/
+  networkData[] = {"port": networks.{{i}}.port};
+}
 
 log(networkData);
 
