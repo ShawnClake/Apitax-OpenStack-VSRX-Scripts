@@ -1,0 +1,32 @@
+name 'delete_networks';
+
+sig username, password, project_id, vsrx_id;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+endpoints = {};
+endpoints.neutron = endpoint('neutron@OpenstackDriver');
+endpoints.nova = endpoint('nova@OpenstackDriver');
+
+url endpoints.nova;
+
+instance = get('/servers/{server_id}', {
+  'driver': 'OpenstackDriver',
+  'path': {'server_id': params.vsrx_id},
+}) {%
+  result = result.server;
+%};
+
+async delete('/servers/{server_id}', {
+  'driver': 'OpenstackDriver',
+  'path': {'server_id': params.vsrx_id},
+});
+
+async script('openstack/vsrx/delete_networks.ah', 
+  username=params.username,
+  password=params.password,
+  project_id=params.project_id,
+  vsrx_name=instance.name
+);
+
+await;
