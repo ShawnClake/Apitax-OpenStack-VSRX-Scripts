@@ -10,28 +10,10 @@ endpoints.nova = endpoint('nova@OpenstackDriver');
 
 url endpoints.neutron;
 
-networks = list(params.net_ids);
+networks = params.net_ids;
 
 for network in networks 
 {
-  ports = get('/v2.0/ports', {
-    'driver': 'OpenstackDriver',
-    'query': {'network_id': network},
-  }) {%
-    result = result.ports;
-  %};
-  
-  for port in ports
-  {
-    script('openstack/port_delete.ah', 
-      username=params.username,
-      password=params.password,
-      port_id=port.id,
-      project_id=params.project_id,
-      endpoints=endpoints
-    );
-  }
-
   script('openstack/network_delete.ah',
     username=params.username,
     password=params.password,
@@ -40,6 +22,3 @@ for network in networks
     endpoints=endpoints
   );
 }
-
-
-//username, password, net_id, project_id, endpoints;
