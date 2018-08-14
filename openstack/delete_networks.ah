@@ -1,0 +1,45 @@
+name 'create_networks_for_vsrx';
+
+sig username, password, project_id, net_ids;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+endpoints = {};
+endpoints.neutron = endpoint('neutron@OpenstackDriver');
+endpoints.nova = endpoint('nova@OpenstackDriver');
+
+url endpoints.neutron;
+
+networks = list(params.net_ids);
+
+for network in networks 
+{
+  ports = get('/v2.0/ports', {
+    'driver': 'OpenstackDriver',
+    'query': {'network_id': network},
+  }) {%
+    result = result.ports;
+  %};
+  
+  for port in ports
+  {
+    script('openstack/port_delete.ah', 
+      username=params.username,
+      password=params.password,
+      port_id=port,
+      project_id=params.project_id,
+      endpoints=endpoints
+    );
+  }
+
+  script('openstack/port_delete.ah',
+    username=params.username,
+    password=params.password,
+    net_id=network,
+    project_id=params.project_id,
+    endpoints=endpoints
+  );
+}
+
+
+//username, password, net_id, project_id, endpoints;
