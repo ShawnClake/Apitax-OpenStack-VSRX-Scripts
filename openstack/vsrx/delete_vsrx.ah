@@ -17,16 +17,15 @@ instance = get('/servers/{server_id}', {
   result = result.server;
 %};
 
-async delete('/servers/{server_id}', {
+delete('/servers/{server_id}', {
   'driver': 'OpenstackDriver',
   'path': {'server_id': params.vsrx_id},
 });
 
-async script('openstack/vsrx/delete_networks.ah', 
+script('openstack/vsrx/delete_networks.ah', 
   username=params.username,
   password=params.password,
   project_id=params.project_id,
   vsrx_name=instance.name
 );
 
-await;
