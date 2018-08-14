@@ -1,0 +1,40 @@
+name 'delete_networks_by_name';
+
+sig username, password, project_id, net_names;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+endpoints = {};
+endpoints.neutron = endpoint('neutron@OpenstackDriver');
+endpoints.nova = endpoint('nova@OpenstackDriver');
+
+url endpoints.neutron;
+
+network_names = list(params.net_names);
+
+network_ids = '';
+
+for network_name in network_names
+{
+  networks = get('/v2.0/networks', {
+    'driver': 'OpenstackDriver',
+    'query': {
+      'name': network_name,
+      'tenant_id': params.project_id
+    },
+  }) {%
+    result = result.networks;
+  %};
+  
+  for network in networks
+  {
+    network_ids[] = network.id;
+  }  
+}
+
+script('openstack/delete_networks.ah', 
+  username=params.username,
+  password=params.password,
+  project_id=params.project_id,
+  net_ids=network_ids
+);
