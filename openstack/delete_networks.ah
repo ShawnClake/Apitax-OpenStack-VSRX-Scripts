@@ -14,7 +14,7 @@ networks = params.net_ids;
 
 for network in networks 
 {
-  script('openstack/network_delete.ah',
+  async script('openstack/network_delete.ah',
     username=params.username,
     password=params.password,
     net_id=network,
@@ -22,3 +22,5 @@ for network in networks
     endpoints=endpoints
   );
 }
+
+await;
