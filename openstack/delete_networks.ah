@@ -26,7 +26,7 @@ for network in networks
     script('openstack/port_delete.ah', 
       username=params.username,
       password=params.password,
-      port_id=port,
+      port_id=port.id,
       project_id=params.project_id,
       endpoints=endpoints
     );
