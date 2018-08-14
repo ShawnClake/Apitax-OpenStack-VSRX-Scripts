@@ -32,7 +32,7 @@ for network in networks
     );
   }
 
-  script('openstack/port_delete.ah',
+  script('openstack/network_delete.ah',
     username=params.username,
     password=params.password,
     net_id=network,
