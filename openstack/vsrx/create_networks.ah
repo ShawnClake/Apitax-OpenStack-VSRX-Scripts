@@ -47,7 +47,7 @@ result = [];
 
 for i in #vlans 
 {
-result[] = script('openstack/create_vlan_network.ah',  
+result[] = async script('openstack/create_vlan_network.ah',  
     username=params.username, 
     password=params.password, 
     project_id=params.project_id, 
@@ -57,5 +57,7 @@ result[] = script('openstack/create_vlan_network.ah',
     port_ip=port_ips.{{i}}
   );
 }
+
+await;
 
 return result;
