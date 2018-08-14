@@ -12,7 +12,7 @@ url endpoints.neutron;
 
 network_names = list(params.net_names);
 
-network_ids = '';
+network_ids = [];
 
 for network_name in network_names
 {
