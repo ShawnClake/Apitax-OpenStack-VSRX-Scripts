@@ -17,6 +17,8 @@ instance = get('/servers/{server_id}', {
   result = result.server;
 %};
 
+log("Instance Name: " + instance.$name);
+
 delete('/servers/{server_id}', {
   'driver': 'OpenstackDriver',
   'path': {'server_id': params.vsrx_id},
@@ -26,6 +28,6 @@ script('openstack/vsrx/delete_networks.ah',
   username=params.username,
   password=params.password,
   project_id=params.project_id,
-  vsrx_name=instance.name
+  vsrx_name=instance.$name
 );
 
