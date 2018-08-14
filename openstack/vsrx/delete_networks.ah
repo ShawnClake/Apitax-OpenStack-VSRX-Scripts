@@ -1,0 +1,28 @@
+name 'delete_networks';
+
+sig username, password, project_id, vsrx_name;
+
+auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
+
+endpoints = {};
+endpoints.neutron = endpoint('neutron@OpenstackDriver');
+endpoints.nova = endpoint('nova@OpenstackDriver');
+
+url endpoints.neutron;
+
+network_names = params.vsrx_name + "_networks_vlan_415,";
+network_names += params.vsrx_name + "_networks_vlan_419,";
+network_names += params.vsrx_name + "_networks_vlan_3108,";
+network_names += params.vsrx_name + "_networks_vlan_3115,";
+network_names += params.vsrx_name + "_networks_vlan_3116,";
+network_names += params.vsrx_name + "_networks_vlan_3124,";
+network_names += params.vsrx_name + "_networks_vlan_3127,";
+network_names += params.vsrx_name + "_networks_vlan_3132";
+
+script('openstack/delete_networks_by_name.ah',
+  username=params.username,
+  password=params.password,
+  project_id=params.project_id,
+  net_names=network_names
+);
+
