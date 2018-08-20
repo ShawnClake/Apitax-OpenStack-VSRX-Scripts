@@ -1,6 +1,6 @@
 name 'delete_networks';
 
-sig username, password, project_id, vsrx_id;
+sig username='api_admin', password, project_id='5182dbe9720c43ac850af96302c5f758', vsrx_id;
 
 auth login(username='api_admin', password='apiadmin123', driver='OpenstackDriver');
 
